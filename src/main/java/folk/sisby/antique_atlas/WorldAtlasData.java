@@ -1,6 +1,18 @@
 package folk.sisby.antique_atlas;
 
+import java.util.BitSet;
+import java.util.Collection;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedDeque;
+
 import com.google.common.collect.Multimap;
+
 import folk.sisby.antique_atlas.reloader.BiomeTileProviders;
 import folk.sisby.antique_atlas.reloader.MarkerTextures;
 import folk.sisby.antique_atlas.reloader.StructureTileProviders;
@@ -26,17 +38,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.Structure;
-
-import java.util.BitSet;
-import java.util.Collection;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class WorldAtlasData {
 	public static final Map<RegistryKey<World>, WorldAtlasData> WORLDS = new HashMap<>();
@@ -178,10 +179,10 @@ public class WorldAtlasData {
 		return true;
 	}
 
-	public Map<Landmark<?>, MarkerTexture> getEditableLandmarks() {
+	public Map<Landmark<?>, MarkerTexture> getAllLandmarks() {
 		Map<Landmark<?>, MarkerTexture> map = new HashMap<>();
 		landmarkMarkers.forEach((type, landmarks) -> landmarks.forEach((pos, pair) -> {
-			if (landmarkIsEditable(pair.left())) map.put(pair.left(), pair.right());
+			map.put(pair.left(), pair.right());
 		}));
 		return map;
 	}

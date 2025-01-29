@@ -282,7 +282,7 @@ public class AtlasScreen extends Component {
 
 		if (worldAtlasData == null) return;
 
-		worldAtlasData.getAllMarkers().forEach((landmark, texture) -> {
+		worldAtlasData.getAllLandmarks().forEach((landmark, texture) -> {
 			BookmarkButton bookmark = new MarkerBookmarkButton(landmark.name(), texture, landmark.color(), true);
 
 			bookmark.addListener(button -> {
